@@ -44,7 +44,7 @@ type ArgsRecord<T extends UnknownArgs> = Compact<
   UnionToIntersection<ArgsRecordUnion<T[number]>>
 >;
 
-type ArgsType<T extends UnknownArgs> =
+export type ArgsType<T extends UnknownArgs> =
   | [ArgsRecord<T>]
   | ArgsTuple<T>;
 

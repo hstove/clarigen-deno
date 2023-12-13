@@ -1,7 +1,7 @@
 import { ClarinetChain, Tx } from '../../clarinet-deps.ts';
 import { cvToValue } from '../../encoder.ts';
 import { Session, SessionContract } from '../../session.ts';
-import { ClarityAbiTypeTuple } from '../../types.ts';
+import { ClarityAbiTypeTuple, ClarityAbiVariable } from '../../types.ts';
 import { getContractName } from '../../utils.ts';
 import { log } from '../logger.ts';
 
@@ -70,16 +70,21 @@ export function getVariables(contract: SessionContract, sessionId: number) {
   return result;
 }
 
+type Writeable<T> = { -readonly [P in keyof T]: Writeable<T[P]> };
+
 export function convertVariables(contract: SessionContract, vars: string) {
-  const varsAbi: ClarityAbiTypeTuple = {
+  const varsAbi: Writeable<ClarityAbiTypeTuple> = {
     tuple: [],
   };
-  contract.contract_interface.variables.forEach((v) => {
-    varsAbi.tuple.push({
-      type: v.type,
-      name: v.name,
-    });
-  });
+  contract.contract_interface.variables.forEach(
+    (v) => {
+      const _v = v as unknown as Writeable<ClarityAbiVariable>;
+      varsAbi.tuple.push({
+        type: _v.type,
+        name: _v.name,
+      });
+    },
+  );
 
   return cvToValue(vars, varsAbi);
 }

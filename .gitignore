@@ -7,3 +7,4 @@ node_modules
 esm
 .cache
 tmp
+.DS_Store
