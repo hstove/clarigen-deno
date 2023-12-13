@@ -1,6 +1,6 @@
 // simple script for testing variable eval
 import { getSession } from '../src/session.ts';
-import { convertVariables, getVariables } from '../src/cli/files/variables.ts';
+// import { convertVariables, getVariables } from '../src/cli/files/variables.ts';
 import { serialize } from '../src/cli/files/base.ts';
 
 const session = getSession();

@@ -32,10 +32,14 @@ scripts:
   check:
     pll:
       - deno check src/index.ts
-      - deno check src/**/*.ts
+      - deno check src/cli/*.ts
+      - deno check src/cli/files/*.ts
+      - deno check src/cli/commands/*.ts
+      - deno check src/docs/*.ts
+      - deno check src/*.ts
       - deno check cli.ts
-      - deno check test_pkg/**/*.ts
-      - deno check tests/**/*.ts
+      - deno check test_pkg/*
+      - deno check tests/*
       - deno lint
       - deno fmt
 

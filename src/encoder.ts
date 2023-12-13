@@ -204,7 +204,7 @@ export function cvToValue<T = any>(
     return tuple as unknown as T;
     // throw new Error("Unable to parse tuple yet.");
   } else if (isClarityAbiList(type)) {
-    const elements: string[] = (input.expectList() as string[]);
+    const elements: string[] = input.expectList() as string[];
     return elements.map((e) => cvToValue(e, type.list.type)) as unknown as T;
     // throw new Error("Unable to parse list");
   } else if (isClarityAbiOptional(type)) {

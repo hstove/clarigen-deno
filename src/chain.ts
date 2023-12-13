@@ -9,14 +9,6 @@ import {
 import { cvToValue } from './encoder.ts';
 import { Account, Accounts, contractsFactory, Simnet } from './factory.ts';
 import { AllContracts, ContractCallTyped } from './factory-types.ts';
-import {
-  AllContracts,
-  ArgsType,
-  ContractCallFunction,
-  ContractCallTyped,
-  ContractFactory,
-  UnknownArgs,
-} from './factory-types.ts';
 import { ExpectType, tx, TxCall, txErr, txOk } from './tx.ts';
 import { ClarityAbiFunction, ErrType, OkType, Response } from './types.ts';
 
@@ -36,7 +28,6 @@ export type ReceiptValues<T extends Readonly<unknown[]>> = {
   readonly [I in keyof T]: TxValueType<T[I]>;
 };
 
-type Receipt<T> = TxReceipt & {
 export type Receipt<T> = TxReceipt & {
   value: TxValueType<T>;
 };

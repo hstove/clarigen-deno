@@ -9,6 +9,7 @@ export async function spawn(
   cwd?: string,
 ): Promise<Result> {
   const _cmd = typeof cmd === 'string' ? cmd.split(' ') : cmd;
+  // deno-lint-ignore no-deprecated-deno-api
   const process = Deno.run({
     cmd: _cmd,
     cwd,
